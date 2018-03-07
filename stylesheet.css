@@ -1,0 +1,13 @@
+body {
+  font-family: monospace;
+}
+
+hr {
+  border-color: #00009c;
+}
+
+/*div {
+    text-align: right;
+} */
+
+.crosshair {cursor: crosshair;}
