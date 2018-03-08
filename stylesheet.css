@@ -1,6 +1,9 @@
 body {
   font-family: monospace;
 }
+.crosshair {cursor: crosshair;
+}
+
 
 hr {
   border-color: #00009c;
