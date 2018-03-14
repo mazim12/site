@@ -1,0 +1,64 @@
+[[Privacy]] and [[anonymity]] have been reduced to the point of non-existence in recent years (Thanks Obama). Our personal, private information is [http://www.loompanics.com/Articles/privacyidentity.html stockpiled and sold] to the highest bidder like so much inventory at a warehouse.  [http://www.eff.org/patriot/sunset/505.php National Security Letters] are written to make [http://www.aclu.org//natsec/warpowers/21261prs20051107.html countless] requests for records from our search engines, libraries, and [http://www.applefritter.com/bannedbooks book stores] with no court oversight. [http://www.templetons.com/brad/gmail.html Email] and especially [http://www.eff.org/news/archives/2006_02.php#004400 searchable data] is practically unprotected from anyone who might ask to have it.  All our electronic communications [http://www.aclu.org/safefree/nsaspying/23989res20060131.html are tapped]. [http://www.csmonitor.com/2006/0209/p01s02-uspo.html Massive governmental data mining schemes] are being built to record everything we publish on the web. In many workplaces, employers spy on and control their employees' Internet access, and this practice is widely considered to be acceptable.
+
+These are dark times. [[Intrusive Surveillance#Search and Seizure | The Fourth Amendment]] has all but disappeared, thanks to the Wars on Drugs, Porn, and Terror. Any practicing [[Commerce | trial lawyer]] will tell you that you can no longer rely on unreasonable search to be the basis for excluding evidence, especially for [http://writ.news.findlaw.com/ramasastry/20060109.html digital evidence] in the hands of a [http://www.justia.us/us/425/435/ third party]. Likewise the First Amendment has been shredded with [http://www.chillingeffects.org/ exceptions] and [http://www.eff.org/Privacy/Surveillance/Terrorism/antiterrorism_chill.html provisos], and is only truly available to those with the money to fight costly (and [http://en.wikipedia.org/wiki/McLibel_case usually frivolous]) court battles against large corporations. In short, you can say what you want so long as it [http://www.chillingeffects.org/johndoe/ doesn't affect corporate profits].
+
+How we got to a legal state where all this activity is the accepted norm, I'm not quite sure. It seems to stem from an underlying assumption that our function at work and at home is that of a diligent slave - a single unit of economic output under the direct watch and total control of our superiors at all times; that we should accept this surveillance because we should have nothing to hide from our benevolent overlords who are watching us merely to protect us from evil.
+
+I believe this view is wrong. Moreover, I believe it is time to reverse the tide. This document seeks to provide the means to protect your right to privacy, freedom of speech, and anonymous net access even under the most draconian of conditions - including, but not limited to, both private and criminal investigation (which happens far more often to innocent people than one might like to think). "So what are you saying? That I can dodge bullets?" "No.. What I am trying to tell you is that when you're ready, you won't have to."
+
+__TOC__
+
+Welcome to the first day of the rest of your life.
+
+== Document Organization ==
+
+Before beginning to read this page I would like to state one comment on the Satan links that are shown on this page. I have looked into this page and yes I can agree with certain things; that we are being lied to,...
+But you know what? When you go to the page of the Demons, you find that humans are rivals of each other. In my world vision, we are not rivals. 
+
+Being rivals produces dishonesty, lying, cheating and fucking each other over in business deals. Not mentioning the planet we're living on. They say we are intended to be slaves, well I've got 1 message for the so called powerful masters or Gods; why don't you show yourselves? you're a bunch of pussies or what? Because some of us will fuck you up anytime, anyplace! So bring it on, bitches.  
+
+
+
+
+
+This document is organized into seven chapters. The first chapter is an introductory philosophical discussion, and the next six are based on the six main ways you can leak information about who you are onto your network connection, or to an attentive individual.
+
+	
+#[[The Matrix]]
+#*A discussion of what the Matrix is, how it functions, and how to resist and subvert it. This forms the philosophical underpinnings of this HOWTO and the driving force behind the author's motivation to work ceaselessly on this document for over a year, and then proceed to give it away for free. Not required reading, but strongly recommended.
+#[[Network Attributes of your computer]] 
+#*This includes your network hardware (MAC) address, your IP address, and your 802.11 nickname. This section describes ways of obfuscating each of these attributes, as well as your network data itself 
+#[[Local Programs and Services]]
+#*Various programs you run can leak information about you to the network. This section describes how to turn them off. 
+#[[Web related leakage]] 	
+#*Even after you have taken steps to obfuscate your network attributes, it is still possible to leak a surprisingly large amount of information about who you are through your web browser. It is even possible for websites to determine your original IP after routing through a proxy (or even Tor), if you are not careful. 
+#[[Intrusive Surveillance]] 	
+#*In some environments (public computers, labs, oppressive work places), your computer may be bugged and under direct deliberate surveillance from a third party. This section describes what to look for, and also describes how to use these same tools to your advantage to conceal your activities. It also covers measures you can take to mitigate information disclosure in the case of equipment seizure. #[[Anonymous Communications]] 
+#*The previous 4 sections have dealt with how to access Internet resources without fear of divulging your identity. But what if you have something to say? This section discusses the ins and outs of publishing data and communicating anonymously. 
+#[[Physical Interaction]]
+#*The ultimate goal in anonymity over the Internet is to carry it over into the physical world: to use money, and to be able to buy and sell items and otherwise conduct business without fear of surveillance. The means for doing this exist, yet most are prohibitively expensive for the average individual. In most cases, low cost, "good enough" alternatives are available with some extra effort, however. Hopefully, as the Anonymous Economy continues to grow, tools to aid in interacting with it safely will become profitable commodities themselves.
+
+	
+== Where to find this Document ==
+
+The latest version of this document can be found at http://n4ez7vf37i2yvz5g.onion/howtos/ExitTheMatrix or at http://jdoe.freeshell.org/howtos/ExitTheMatrix. The Anonymity Portal also provides a mirror, along with several other documents. Those wishing to mirror or build their own copy can download this web tarball. This instance was built with xmlto html ExitTheMatrix.xml.
+
+== License ==
+
+This work is licensed under the Creative Commons Share Alike v2.5 license.
+
+== Credits ==
+
+This document exists because of the hard work of literally millions of individuals working in concert to build a free, open world where all can meet, trade and converse without fear. One day The Man will burn '''(Uprising of Burning Flame)'''.
+
+At the same time, I would also like to thank The Man, because without him, the millions of individuals working in concert to build a free, open world where all can meet, trade and converse without fear would not have such a fascinating hobby.
+
+Furthermore, I would like to thank the dozens of contributors who have tipped me off to various news articles, software, FIXME solutions, and so on. Your help is much appreciated!
+
+== Feedback and Assistance ==
+
+If I missed anything you feel is important, or if anything is unclear, please contact me via email at <aceevader]-a-t-[mailvault.com>. Particularly if you have any material to cover any of the FIXMEs found in the text, please email me. If you are someone who needs confidential anonymity advice or assistance, do NOT use my mailvault GPG key, since I have no control over preventing leakage of the passphrase. Instead, use this key. While mailvault is not located inside the USA (and thus not subject to the most likely form of assault: a National Security Letter), it is not outside the question that they could be coerced in some other manner. If you are unfamiliar with GPG, you may consider installing a graphical front end to help you along.
+
+
+
+{{Matrixstub}}
