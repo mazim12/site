@@ -1,8 +1,6 @@
 body {
   font-family: monospace;
-}
-.crosshair {cursor: crosshair;
-}
+
 
 
 hr {
@@ -13,4 +11,6 @@ hr {
     text-align: right;
 } */
 
-.crosshair {cursor: crosshair;}
+{
+	cursor: crosshair;
+}
