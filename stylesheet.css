@@ -11,6 +11,10 @@ hr {
     text-align: right;
 } */
 
+<style>
+.borderexample
 {
-	cursor: crosshair;
+border-style:dotted;
+border-color:#e6ffff;
 }
+</style>
