@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
-    <title>Password Protected Page</title>
+    <title>Protected Page</title>
     <style>
         html, body {
             margin: 0;
@@ -24,7 +24,7 @@
             width: 100%;
             height: 100%;
             display: table;
-            background-color: #00000;
+            background-color: #000000;
         }
         
         #dialogWrapCell {
@@ -111,7 +111,7 @@
                     <input id="pass" type="password" name="pass">
                     <div>
                         <span id="messageWrapper">
-                            <span id="invalidPass" class="notifyText">Sorry, please try again.</span>
+                            <span id="invalidPass" class="notifyText">Access Denied.</span>
                             <span id="success" class="notifyText">Access Gained</span>
                             &nbsp;
                         </span>
@@ -207,7 +207,6 @@ n
                 var decrypted = decryptFile(CryptoJS.enc.Base64.parse(pl.data), passEl.value, CryptoJS.enc.Base64.parse(pl.salt), CryptoJS.enc.Base64.parse(pl.iv));
                 if (decrypted === "") throw "No data returned";
                 
-                // Set default iframe link targets to _top so all links break out of the iframe
                 decrypted = decrypted.replace("<head>", "<head><base href=\".\" target=\"_top\">");
                 
                 srcDoc.set(contentFrame, decrypted);
