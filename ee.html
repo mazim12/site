@@ -1,40 +1,262 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114673456-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Password Protected Page</title>
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #dialogText {
+            padding: 10px 30px;
+            color: white;
+            background-color: #333333;
+        }
+        
+        #dialogWrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: table;
+            background-color: #EEEEEE;
+        }
+        
+        #dialogWrapCell {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        #mainDialog {
+            width: 500px;
+            border: solid #AAAAAA 1px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 3px #AAAAAA;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+            overflow: hidden;
+            text-align: left;
+        }
+        #passArea {
+            padding: 20px 30px;
+            background-color: white;
+        }
+        #passArea > * {
+            margin: 5px auto;
+        }
+        #pass {
+            width: 100%;
+            height: 40px;
+            font-size: 30px;
+        }
+        
+        #messageWrapper {
+            float: left;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+        
+        .notifyText {
+            display: none;
+        }
+        
+        #invalidPass {
+            color: red;
+        }
+        
+        #success {
+            color: green;
+        }
+        
+        #submitPass {
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: #E7E7E7;
+            border: solid gray 1px;
+            float: right;
+        }
+        #contentFrame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+  <script>
+            //If there is no trailing slash after the path in the url, add it
+            if (window.location.pathname.endsWith('/') === false) {
+                var url = window.location.protocol + '//' +
+                        window.location.host +
+                        window.location.pathname + '/' +
+                        window.location.search;
+        
+                window.history.replaceState(null, document.title, url);
+            }
+        </script></head>
+  <body>
+    <iframe id="contentFrame" frameBorder="0"></iframe>
+    <div id="dialogWrap">
+        <div id="dialogWrapCell">
+            <div id="mainDialog">
+                <div id="dialogText">This page is password protected.</div>
+                <div id="passArea">
+                    <p id="passwordPrompt">Password</p>
+                    <input id="pass" type="password" name="pass">
+                    <div>
+                        <span id="messageWrapper">
+                            <span id="invalidPass" class="notifyText">Sorry, please try again.</span>
+                            <span id="success" class="notifyText">Success!</span>
+                            &nbsp;
+                        </span>
+                        <button id="submitPass" type="button">Submit</button>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
+    <script>
+        /*! srcdoc-polyfill - v0.1.1 - 2013-03-01
+        * http://github.com/jugglinmike/srcdoc-polyfill/
+        * Copyright (c) 2013 Mike Pennisi; Licensed MIT */
+        (function( window, document, undefined ) {
+	
+	        var idx, iframes;
+	        var _srcDoc = window.srcDoc;
+	        var isCompliant = !!("srcdoc" in document.createElement("iframe"));
+	        var implementations = {
+		        compliant: function( iframe, content ) {
 
-  gtag('config', 'UA-114673456-1');
-</script>
+			        if (content) {
+				        iframe.setAttribute("srcdoc", content);
+			        }
+		        },
+		        legacy: function( iframe, content ) {
 
-    
-    <link rel="stylesheet" 
-      href="stylesheet.css"  
-      type="text/css"  />
-<title>ノーノム</title>
-</head>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    </link>
-    <body>
-    <pre>
- _ __   ___  _ __ ___  _ __   ___  _ __ ___  
- | '_ \ / _ \| '_ ` _ \| '_ \ / _ \| '_ ` _ \ 
- | | | | (_) | | | | | | | | | (_) | | | | | |
- |_| |_|\___/|_| |_| |_|_| |_|\___/|_| |_| |_|
- </div><hr style="border-top: dotted 1px;" />                                            
-    </pre>
-<BODY BGCOLOR="#000" 
-          TEXT="#6fc3df" 
-          LINK="#e6ffff" 
-          VLINK="#e6ffff" 
-          ALINK="#e6ffff" ></BODY>
-<p>this is a test</p>
- <br>
-<p>this is dumb</p>
-</body>
+			        var jsUrl;
+
+			        if (!iframe || !iframe.getAttribute) {
+				        return;
+			        }
+
+			        if (!content) {
+				        content = iframe.getAttribute("srcdoc");
+			        } else {
+				        iframe.setAttribute("srcdoc", content);
+			        }
+
+			        if (content) {
+				        // The value returned by a script-targeted URL will be used as
+				        // the iFrame's content. Create such a URL which returns the
+				        // iFrame element's `srcdoc` attribute.
+				        jsUrl = "javascript: window.frameElement.getAttribute('srcdoc');";
+
+				        iframe.setAttribute("src", jsUrl);
+
+				        // Explicitly set the iFrame's window.location for
+				        // compatability with IE9, which does not react to changes in
+				        // the `src` attribute when it is a `javascript:` URL, for
+				        // some reason
+				        if (iframe.contentWindow) {
+					        iframe.contentWindow.location = jsUrl;
+				        }
+			        }
+		        }
+	        };
+	        var srcDoc = window.srcDoc = {
+		        // Assume the best
+		        set: implementations.compliant,
+		        noConflict: function() {
+			        window.srcDoc = _srcDoc;
+			        return srcDoc;
+		        }
+	        };
+
+	        // If the browser supports srcdoc, no shimming is necessary
+	        if (isCompliant) {
+		        return;
+	        }
+
+	        srcDoc.set = implementations.legacy;
+
+	        // Automatically shim any iframes already present in the document
+	        iframes = document.getElementsByTagName("iframe");
+	        idx = iframes.length;
+
+	        while (idx--) {
+		        srcDoc.set( iframes[idx] );
+	        }
+
+        }( this, this.document ));
+    </script>
+    <script>
+        var pl = {"salt":"j274wXhm/DXxnmZEmCMogCcAKVic/6YUDj1tjVFaJUc=","iv":"C/810bDiStekx1aGU90IRA==","data":"o6kNnyMYU2YZ1/+vQzOU2EjBBoKWbHHUhjsdqgDihpWlFdkGKvYhxkGVOF9My0nfWRndTXVp/Q8lyk6deZgzLGR+XPnYIaXFbmTl7pdo+YVvG834wfT6oD1mIWVmdo5VSAg1RIWMe6PUtFJaT0ZKHd+jXlQWYh59n7Xbr8q8WHJ+gwNp/XFnLCu880pKT6KY43NLXioxnXHsEjW2sGIACVBQdSoGcmGsmi6E69g/cjvN4T1Ub/IrQ8b8TI35nXOrxuTwyhTQpMyjb4y4cA80dJEAVOAb/rwmiCpbhcZ2p8zb9Yb5zoSzVtxkVdJSQvs6SWXDiaVPppIXuaJwTXdt3KboGL4nU7GZkzhZAbL0e3VLhebX4TXGKylh8ft1HLVWI/beNjpFzXI5eV2bJH0O+odd4c8yR4hdwqsPk59mZ/4Fd1FbG9jTxVTx7+wxBT8qjf2YFq2KDfR670M9vDtwTW1YaGOOebvseI5v6JeGfJbQOWvtIPJkMyA6oL6vmFP2bCM86WB1/5D6YmyIlMx9Yvr+oIt6J/SQXLOFQA5Kk2Ru74wW7urVom/MnVgGbDZZXIj+8efwHsS0J5rO+HRFabw44ecvlmnvbf6VZ4uB7i2hcaaZMrZwFOVFkzLNRe3Ysa+rqubTICIo+2ttQINAj+mW3yp/ZliDwXhNiARHR5dnUD+n40sIPkWGnfwthz+jlLRo/X9PA77JHUrtpU0gHoqgCuBnUccEVHnUv+Lavu1bHd5jMZ3kufJ2lxWVX/fkAeIbd7mU51gms75oVaiUWvcdny3y32MtU02gnTlUr1T7+p7zk4w4Pv6LfzvEQDfMtVM6lLweVDTUuJLhKyXNChOz9lkqhT+59gUCbzHbf8yhjZX8U7t+K5dZH/knv2PJTpsVxKNEfseuXefaqy4eJgInlxy5oepMR06NYNvMPwbSoTYnYG4sb8HOM9sHOrZ4yUw97Mwm9vDz+np3haJS2nv1qcUcSX546uiHaSwJGCNpNJFcwf8bGlJ0HTQydzf669VaqkzyaO/g5o++npQfom6XPwlecy6b871Rz8VIz2EcDWr8M+zhNECuyEO3+QszF6MjNdR44DLPFfh4+6p2WEjaNVTAcKxEA/cRPxxppNtZCWuZE+e0EePtVnapkYqwEwp4hAs70ec3ztmxlM7URdO99G7/wPMAlh2mV4j4Ij45cExjcWQDkBCh+nxkAPfcRcThyGsY48i1c3LaGdAIiNHJw+lbJxM1Yaef9oLUujusGv7bjwOnB0e7ZuiEI3+MXiMnSIxHMG9q2mzSzkeHcZD8mJfZjb3mPWPp8216M84cf0WRJN4j6Z+aNlfC5mZqlyEFh7x3v3BnmMeY/YTP9qmsqrHhC68OSHSFM+jwuRDAc24HreRnBPZ6FWzacjbOKYqPRvotJyfAqkpjCNlA60nnO/7wXloepC15j+bGhMbfkAJEhqcJuJiIC6u9PVkYHaEJtKbC0reY43LvZrQX0Hbt9cBbhJImwy1CwskMcyITuy0QBHlfYgx7owL+TJLIIcpyMGZObv2s53PLrtTcRT0x2I3L7ZidFyOejrDZCyAIvjGIZfdZZjYL8J5ieAIyfSMHZ+9zYBcsfqumZaOjBpa/e6iWJ4hNpcVY/7KV2ABwRNBEAKADq6m2xm4EL9jj58Qigp2cYaCNOo0OrroyxA=="};
+        
+        var submitPass = document.getElementById('submitPass');
+        var passEl = document.getElementById('pass');
+        var invalidPassEl = document.getElementById('invalidPass');
+        var successEl = document.getElementById('success');
+        var contentFrame = document.getElementById('contentFrame');
+        
+        if (pl === "") {
+            submitPass.disabled = true;
+            passEl.disabled = true;
+            alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
+        }
+        
+        function doSubmit(evt) {
+            try {
+                var decrypted = decryptFile(CryptoJS.enc.Base64.parse(pl.data), passEl.value, CryptoJS.enc.Base64.parse(pl.salt), CryptoJS.enc.Base64.parse(pl.iv));
+                if (decrypted === "") throw "No data returned";
+                
+                // Set default iframe link targets to _top so all links break out of the iframe
+                decrypted = decrypted.replace("<head>", "<head><base href=\".\" target=\"_top\">");
+                
+                srcDoc.set(contentFrame, decrypted);
+                
+                successEl.style.display = "inline";
+                passEl.disabled = true;
+                submitPass.disabled = true;
+                setTimeout(function() {
+                    dialogWrap.style.display = "none";
+                }, 1000);
+            } catch (e) {
+                invalidPassEl.style.display = "inline";
+                passEl.value = "";
+            }
+        }
+        
+        submitPass.onclick = doSubmit;
+        passEl.onkeypress = function(e){
+            if (!e) e = window.event;
+            var keyCode = e.keyCode || e.which;
+            invalidPassEl.style.display = "none";
+            if (keyCode == '13'){
+              // Enter pressed
+              doSubmit();
+              return false;
+            }
+        }
+        
+        function decryptFile(contents, password, salt, iv) {
+            var _cp = CryptoJS.lib.CipherParams.create({
+                ciphertext: contents
+            });
+            var key = CryptoJS.PBKDF2(password, salt, { keySize: 256/32, iterations: 100 });
+            var decrypted = CryptoJS.AES.decrypt(_cp, key, {iv: iv});
+            
+            return decrypted.toString(CryptoJS.enc.Utf8);
+        }
+    </script>
+  </body>
 </html>
